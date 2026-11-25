@@ -156,7 +156,10 @@ impl Picker {
             .build();
         window.init_layer_shell();
         window.set_layer(Layer::Overlay);
-        window.set_keyboard_mode(KeyboardMode::Exclusive);
+        // OnDemand, not Exclusive: an exclusive overlay keeps every key even
+        // after focus moves elsewhere (e.g. a fullscreen game grabbing it), so
+        // nothing else can be typed into until the picker is closed.
+        window.set_keyboard_mode(KeyboardMode::OnDemand);
         window.set_namespace(Some("cliphist-picker"));
 
         let model = gtk::StringList::new(&[]);
@@ -340,6 +343,19 @@ impl Picker {
             }
         });
         self.window.add_controller(keys);
+
+        // Close when focus moves to another window, like a popup menu.
+        let weak = Rc::downgrade(self);
+        self.window.connect_is_active_notify(move |window| {
+            if let Some(p) = weak.upgrade() {
+                if std::env::var_os("CLIPHIST_PICKER_DEBUG").is_some() {
+                    eprintln!("is-active: {}", window.is_active());
+                }
+                if !window.is_active() && window.is_visible() {
+                    p.hide();
+                }
+            }
+        });
     }
 
     fn mode(&self) -> Mode {
@@ -408,7 +424,7 @@ impl Picker {
                 glib::idle_add_local_once(move || {
                     p.hide();
                     p.window.set_opacity(1.0);
-                    p.window.set_keyboard_mode(KeyboardMode::Exclusive);
+                    p.window.set_keyboard_mode(KeyboardMode::OnDemand);
                 });
             }
             glib::ControlFlow::Break

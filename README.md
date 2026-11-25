@@ -31,6 +31,10 @@ any keyboard layout.
 
 Numbers are positions in the history (1 = newest), also while filtering.
 
+The picker takes keyboard focus when shown but doesn't hold it: when focus
+moves to another window (a click elsewhere, a game grabbing it), the picker
+closes.
+
 Pasting hides the picker, then pipes the selected `cliphist list` lines to
 `~/.local/bin/hypr-clipboard-paste` (from [my dotfiles](https://github.com/komparator147477/dotfiles/blob/main/bin/.local/bin/hypr-clipboard-paste)). It joins consecutive
 text entries with newlines into one paste and pastes images one by one, without
