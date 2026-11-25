@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    container: archlinux:base-devel
+    steps:
+      - name: Install dependencies
+        run: pacman -Syu --noconfirm --needed git rust gtk4 gtk4-layer-shell
+      - uses: actions/checkout@v7.0.1
+      - name: Check formatting
+        run: cargo fmt --check
+      - name: Check lints
+        run: cargo clippy --all-targets --locked -- -D warnings
+      - name: Test
+        run: cargo test --locked
+      - name: Build release
+        run: cargo build --release --locked

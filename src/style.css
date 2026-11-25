@@ -1,0 +1,120 @@
+/* Theme matching hyprtoolkit.conf (hyprlauncher). */
+
+window.picker {
+  background: transparent;
+}
+
+.frame {
+  background-color: #121624;
+  border: 2px solid #33ccff;
+  border-radius: 12px;
+  color: #dce8ff;
+  font-family: "Noto Sans";
+  font-size: 15px;
+}
+
+entry.search {
+  margin: 10px 10px 0 10px;
+  background-color: #1a1f30;
+  color: #dce8ff;
+  border: 1px solid #33ccff;
+  border-radius: 8px;
+  box-shadow: none;
+  outline: none;
+  min-height: 34px;
+}
+
+scrolledwindow.list,
+scrolledwindow.list > viewport,
+listview {
+  background: transparent;
+}
+
+listview {
+  padding: 8px;
+}
+
+listview > row {
+  border-radius: 8px;
+  padding: 3px 6px;
+  outline: none;
+}
+
+listview > row:selected {
+  background-color: rgba(51, 204, 255, 0.22);
+}
+
+listview > row:hover:not(:selected) {
+  background-color: rgba(34, 40, 64, 0.8);
+}
+
+.num {
+  font-family: "Noto Sans Mono";
+  color: #6c7a99;
+}
+
+listview > row:selected .num {
+  color: #33ccff;
+}
+
+.mark {
+  font-family: "Noto Sans Mono";
+  font-weight: bold;
+  font-size: 12px;
+  color: #121624;
+  background-color: #00ff99;
+  border-radius: 9px;
+  min-width: 18px;
+  min-height: 18px;
+  padding: 0 4px;
+}
+
+.mark.empty {
+  background-color: transparent;
+}
+
+.thumb {
+  border-radius: 4px;
+  background-color: #1a1f30;
+}
+
+.text.image {
+  color: #9fb2d9;
+  font-style: italic;
+}
+
+.preview {
+  background-color: #161b2b;
+  border-top-right-radius: 10px;
+}
+
+.preview-text {
+  font-family: "Noto Sans Mono";
+  font-size: 13px;
+  padding: 12px;
+}
+
+.preview-meta {
+  color: #6c7a99;
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+
+.empty-history {
+  color: #6c7a99;
+}
+
+paned > separator {
+  min-width: 1px;
+  background-color: #222840;
+  background-image: none;
+}
+
+scrollbar slider {
+  margin: 0;
+  min-width: 6px;
+  min-height: 6px;
+  background-color: #2c3450;
+  border-radius: 3px;
+}

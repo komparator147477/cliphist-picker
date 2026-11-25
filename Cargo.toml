@@ -1,0 +1,16 @@
+[package]
+name = "cliphist-picker"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+description = "Fast clipboard history picker for Hyprland on top of cliphist"
+repository = "https://github.com/komparator147477/cliphist-picker"
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
+anyhow = "1.0.105"
+async-channel = "2.5.0"
+gtk = { version = "0.11.5", package = "gtk4", features = ["v4_14"] }
+gtk4-layer-shell = "0.9.0"
+nucleo-matcher = "0.3.1"
